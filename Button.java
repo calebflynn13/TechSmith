@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Button {
     private int x, y, width, height;
-    private String value;
+    public String value;
 
     public Button(String strValue, int screenWidth, int screenHeight)
     {
@@ -32,4 +32,8 @@ public class Button {
         g.drawString(value, x + width / 2 - fontSize / 4, y + height / 2 + fontSize / 4);
     }
 
+    public boolean clicked(Point p)
+    {
+        return (p.x >= this.x && p.x <= this.x + this.width && p.y >= this.y && p.y <= this.y + height);
+    }
 }
