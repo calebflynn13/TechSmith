@@ -10,7 +10,8 @@ public class Computer {
         ADD,
         SUBTRACT,
         MULTIPLY,
-        DIVIDE
+        DIVIDE,
+        NEGATIVE
     }
 
     public Computer() {
@@ -21,14 +22,23 @@ public class Computer {
 
     public static double compute(double leftValue, double rightValue, CommandOptions command)
     {
+        double result = 0;
         switch (command)
         {
-            case ADD: return leftValue + rightValue;
-            case SUBTRACT: return leftValue - rightValue;
-            case MULTIPLY: return leftValue * rightValue;
-            case DIVIDE: return leftValue / rightValue;
+            case ADD: result = leftValue + rightValue;
+                break;
+            case SUBTRACT: result = leftValue - rightValue;
+                break;
+            case MULTIPLY: result = leftValue * rightValue;
+                break;
+            case DIVIDE: result = leftValue / rightValue;
+                break;
         }
-        return 0;
+
+        result *= 100000000;
+        result = Math.round(result);
+        result /= 100000000;
+        return result;
     }
 
     /**
@@ -37,8 +47,12 @@ public class Computer {
      */
     public void takeInput(String input)
     {
-        if (isNumeric(input))
+        if (isNumeric(input) || input.equals("."))
         {
+            if (prevInput.contains(".") && input.equals("."))
+            {
+                return; // don't allow multiple decimals
+            }
             this.prevInput += input;
             Calculator.display = this.prevInput;
         }
@@ -56,6 +70,9 @@ public class Computer {
                 Calculator.display = "" + compute(Double.parseDouble(leftValue), Double.parseDouble(rightValue), command);
                 this.prevSolution = Calculator.display; // this accounts for the possibility that we to use the result for a future operation
                 this.command = null;
+            }
+            else if(input.equals("+/-")) {
+                this.prevInput = "" + (Double.parseDouble(this.prevInput) * -1);
             }
             else {
                 if (this.prevInput.equals(""))

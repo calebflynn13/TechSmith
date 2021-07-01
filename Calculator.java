@@ -86,6 +86,8 @@ public class Calculator extends JPanel
             buttons.add(new Button("-"));
             buttons.add(new Button("+"));
             buttons.add(new Button("="));
+            buttons.add(new Button("+/-"));
+            buttons.add(new Button("."));
         }
         for (Button button : buttons) {
             button.paint(g);

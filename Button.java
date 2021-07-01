@@ -23,7 +23,8 @@ public class Button {
             "x",
             "-",
             "+",
-            "="
+            "=",
+            "."
     ));
 
     public Button(String strValue)
@@ -49,6 +50,12 @@ public class Button {
                     break;
                 case "=":
                     this.buildCommandButton("=", 3, 4);
+                    break;
+                case ".":
+                    this.buildCommandButton(".", 2, 4);
+                    break;
+                case "+/-":
+                    this.buildCommandButton("+/-", 2, 0);
                     break;
             }
         }
