@@ -12,7 +12,8 @@ public class Calculator extends JPanel {
     public static int WIDTH = 500;
     public static int HEIGHT = 800;
     public static int padding = 10;
-    public static Computer computer = new Computer();
+    public static int DISPLAYHEIGHT=180;
+    public Computer computer = new Computer();
     public static ArrayList<Button> buttons = new ArrayList<Button>();
     public static String display = "";
 
@@ -27,7 +28,8 @@ public class Calculator extends JPanel {
             {
                 if (button.clicked(p))
                 {
-                    System.out.println("clicked: " + button.value);
+                    computer.takeInput(button.value);
+                    repaint();
                 }
             }
         }
@@ -46,11 +48,9 @@ public class Calculator extends JPanel {
     }
 
     public void paint(Graphics g) {
-        WIDTH = getWidth();
-        HEIGHT = getHeight();
         setBackground(Color.WHITE);
         g.setColor(Color.gray);
-        g.fillRoundRect(padding, padding, getWidth() - padding * 2, getHeight() - padding * 2, 10, 10);
+        g.fillRoundRect(padding, padding, getWidth() - padding * 2, getHeight() - padding * 2, 30, 30);
 
         // buttons
         if (buttons.isEmpty()) {
@@ -61,5 +61,12 @@ public class Calculator extends JPanel {
         for (Button button : buttons) {
             button.paint(g);
         }
+
+        // display
+        g.setColor(Color.white);
+        g.fillRoundRect(padding * 2, padding * 2, getWidth() - padding * 4, DISPLAYHEIGHT, 30, 30);
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Arial", Font.PLAIN, 50));
+        g.drawString(display, padding * 2, DISPLAYHEIGHT - padding * 2);
     }
 }
