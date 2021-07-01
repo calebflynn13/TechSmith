@@ -4,7 +4,7 @@ public class TestComputer {
         basicTests();
         chainResults();
         // TODO: DIVIDE BY ZERO
-        // TODO: DIVISION FOR REPEATING DECIMAL LIKE 1/3 = 0.33333
+        // TODO: DIVISION FOR REPEATING DECIMAL LIKE 1/3 = 0.33333. Needs to be rounded off
     }
 
     public static void basicTests()

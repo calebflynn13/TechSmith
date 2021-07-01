@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ public class Calculator extends JPanel {
     public static String display = "";
 
     public Calculator() {
+        setFocusable(true);
+        addKeyListener(new KeyboardActions());
         addMouseListener(new MouseActions());
     }
 
@@ -28,11 +32,31 @@ public class Calculator extends JPanel {
             {
                 if (button.clicked(p))
                 {
-                    System.out.println(button.value);
                     computer.takeInput(button.value);
                     repaint();
                 }
             }
+        }
+    }
+
+    private class KeyboardActions extends KeyAdapter {
+        public void keyTyped(KeyEvent e) {
+            String input = "" + e.getKeyChar();
+            // map some of the manual keys to what we want
+            if (input.equals("\n"))
+            {
+                input = "=";
+            }
+            if (input.equals("*"))
+            {
+                input = "x";
+            }
+            if (!Button.ALLOWEDBUTTONS.contains(input))
+            {
+                return;
+            }
+            computer.takeInput(input);
+            repaint();
         }
     }
 

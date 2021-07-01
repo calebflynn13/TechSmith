@@ -1,9 +1,30 @@
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Button {
     private int x, y, width, height;
     private Color color;
     public String value;
+
+    public static ArrayList<String> ALLOWEDBUTTONS  = new ArrayList<String>(Arrays.asList(
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "/",
+            "*",
+            "x",
+            "-",
+            "+",
+            "="
+    ));
 
     public Button(String strValue)
     {
