@@ -68,10 +68,9 @@ public class Computer {
                     case "-":
                         command = CommandOptions.SUBTRACT;
                         break;
-                    case "*":
+                    case "x":
                         command = CommandOptions.MULTIPLY;
                         break;
-
                     case "/":
                         command = CommandOptions.DIVIDE;
                         break;
