@@ -9,12 +9,12 @@ import javax.swing.*;
 /**
  * This class is where we start everything. It creates the JFrame and the shell of the calculator
  */
-public class Calculator extends JPanel {
-
+public class Calculator extends JPanel
+{
     public static int WIDTH = 500;
     public static int HEIGHT = 800;
     public static int PADDING = 10;
-    public static int DISPLAYHEIGHT=150;
+    public static int DISPLAY_HEIGHT = 150;
     public Computer computer = new Computer();
     public static ArrayList<Button> buttons = new ArrayList<Button>();
     public static String display = "";
@@ -64,7 +64,6 @@ public class Calculator extends JPanel {
     {
         Calculator calculator = new Calculator();
 
-
         // create the window and setup things
         JFrame frame = new JFrame();
         frame.add(calculator);
@@ -94,9 +93,9 @@ public class Calculator extends JPanel {
 
         // display
         g.setColor(Color.white);
-        g.fillRoundRect(PADDING * 2, PADDING * 2, getWidth() - PADDING * 4, DISPLAYHEIGHT, 30, 30);
+        g.fillRoundRect(PADDING * 2, PADDING * 2, getWidth() - PADDING * 4, DISPLAY_HEIGHT, 30, 30);
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.PLAIN, 50));
-        g.drawString(display, PADDING * 2, DISPLAYHEIGHT - PADDING * 2);
+        g.drawString(display, PADDING * 2, DISPLAY_HEIGHT - PADDING * 2);
     }
 }

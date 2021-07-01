@@ -98,7 +98,7 @@ public class Button {
      */
     private int getY(int row)
     {
-        return (Calculator.PADDING * 4 + Calculator.DISPLAYHEIGHT) + row * 117;
+        return (Calculator.PADDING * 4 + Calculator.DISPLAY_HEIGHT) + row * 117;
     }
 
     public void paint(Graphics g)

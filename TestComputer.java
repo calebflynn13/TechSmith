@@ -3,8 +3,13 @@ public class TestComputer {
     {
         basicTests();
         chainResults();
+
+        System.out.println("All tests passed :)");
+        // ---- IDEAS ----- //
         // TODO: DIVIDE BY ZERO
         // TODO: DIVISION FOR REPEATING DECIMAL LIKE 1/3 = 0.33333. Needs to be rounded off
+        // TODO: Better rounding in general
+        // TODO: dynamic width/height screen
     }
 
     public static void basicTests()
