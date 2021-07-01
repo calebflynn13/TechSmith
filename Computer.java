@@ -2,16 +2,11 @@ public class Computer {
 
     public String leftValue;
     public String rightValue;
-    private String prevInput;
+    private String prevInput;    // represents the last digit that was typed
+    private String prevSolution; // represents the solution to the previous equation
     private CommandOptions command;
-    private Direction direction; // this represents which value we are in the process of populating. Ex: (left + right)
 
-    private enum Direction {
-        LEFT,
-        RIGHT
-    }
-
-    public static enum CommandOptions {
+    public enum CommandOptions {
         ADD,
         SUBTRACT,
         MULTIPLY,
@@ -22,7 +17,6 @@ public class Computer {
         this.leftValue = "";
         this.rightValue = "";
         this.prevInput = "";
-        this.direction = Direction.LEFT;
     }
 
     public static double compute(double leftValue, double rightValue, CommandOptions command)
@@ -52,27 +46,40 @@ public class Computer {
             // input is a command
             if (input.equals("="))
             {
+                // quit early if we don't have all the correct inputs
+                if (this.leftValue.equals("")||this.prevInput.equals("")||this.command == null)
+                {
+                    return;
+                }
                 this.rightValue = this.prevInput;
                 this.prevInput = "";
                 Calculator.display = "" + compute(Double.parseDouble(leftValue), Double.parseDouble(rightValue), command);
-                this.leftValue = Calculator.display; // this accounts for the possibility that we to use the result for something
+                this.prevSolution = Calculator.display; // this accounts for the possibility that we to use the result for a future operation
+                this.command = null;
             }
             else {
-                this.leftValue = this.prevInput;
+                if (this.prevInput.equals(""))
+                {
+                    this.leftValue = this.prevSolution;
+                }
+                else {
+                    this.leftValue = this.prevInput;
+                }
                 this.prevInput = "";
+
                 switch(input)
                 {
                     case "+":
-                        command = CommandOptions.ADD;
+                        this.command = CommandOptions.ADD;
                         break;
                     case "-":
-                        command = CommandOptions.SUBTRACT;
+                        this.command = CommandOptions.SUBTRACT;
                         break;
                     case "x":
-                        command = CommandOptions.MULTIPLY;
+                        this.command = CommandOptions.MULTIPLY;
                         break;
                     case "/":
-                        command = CommandOptions.DIVIDE;
+                        this.command = CommandOptions.DIVIDE;
                         break;
                 }
             }
